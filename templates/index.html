@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
 Viestien määrä: {{ count }}
 <hr>
 {% for message in messages %}
@@ -6,3 +8,4 @@ Viestien määrä: {{ count }}
 <hr>
 {% endfor %}
 <a href="/new">Lähetä viesti</a>
+{% endblock %}
