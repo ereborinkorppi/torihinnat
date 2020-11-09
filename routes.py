@@ -5,12 +5,9 @@ import users
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT COUNT(*) FROM messages")
-    count = result.fetchone()[0]
-    result = db.session.execute("SELECT content FROM messages")
-    messages = result.fetchall()
-    return render_template("index.html", count=count, messages=messages) 
-
+        return render_template("index.html")
+    if __name__ =="__main__":
+        app.run(debug = True)    
 @app.route("/new")
 def new():
     return render_template("new.html")
