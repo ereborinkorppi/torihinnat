@@ -2,12 +2,14 @@
 {% block title %}Etusivu{% endblock %}
 {% block content %}
 <h2>Etsi torituotteiden myyntipaikkaa</h2>
-
+{% if session.user_id %}
+<a href="/new">Lisää uusi myyntipaikka</a>
+{% endif %}
 <div style="width: 100%; height: 100%" id="mapContainer"></div>
 <script>	
       // Initialize the platform object:
       var platform = new H.service.Platform({
-	  'apikey': 'NysG-oyPWp9OMjpxXfK3NjElOTLBfUayBV5CIHF9eCI'
+	  'apikey': 'q0cZILCA3N1F056KnlM6-IeraPJlVCZp7OzrRb1jlo4'
       });
 	  
 	   const lat = 60.192059;

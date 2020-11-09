@@ -6,6 +6,18 @@ import users
 @app.route("/")
 def index():
         return render_template("index.html")
+
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
+@app.route("/send", methods=["POST"])
+def send():
+    content = request.form["name"]
+    sql = "INSERT INTO locations (name) VALUES (:name)"
+    db.session.execute(sql, {"name":name})
+    db.session.commit()
+    return redirect("/")
     
 @app.route("/login", methods=["GET","POST"])
 def login():
