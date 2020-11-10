@@ -1,22 +1,21 @@
 from app import app
 from db import db
 from flask import redirect, render_template, request
-import users
+import users, locations
 
 @app.route("/")
 def index():
-        return render_template("index.html")
+    result = db.session.execute("SELECT location_name FROM locations")
+    location = result.fetchall()
+    return render_template("index.html", location=location) 
 
 @app.route("/new")
 def new():
     return render_template("new.html")
-
+    
 @app.route("/send", methods=["POST"])
 def send():
-    content = request.form["name"]
-    sql = "INSERT INTO locations (name) VALUES (:name)"
-    db.session.execute(sql, {"name":name})
-    db.session.commit()
+    locations.send()
     return redirect("/")
     
 @app.route("/login", methods=["GET","POST"])
