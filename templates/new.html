@@ -1,9 +1,19 @@
 {% extends "layout.html" %}
 {% block title %}Uusi myyntipaikka{% endblock %}
 {% block content %}
+<h3>Lisää uusi myyntipaikka</h3>
 <form action="/send" method="POST">
-Anna myyntipaikalle nimi: <br>
+Nimi: <br>
 <textarea name="location_name" rows="1" cols="40"></textarea>
+<br>
+Osoite: <br>
+<textarea name="address" rows="1" cols="40"></textarea>
+<br>
+Postinumero: <br>
+<textarea name="postal_code" rows="1" cols="40"></textarea>
+<br>
+Kaupungi: <br>
+<textarea name="city" rows="1" cols="40"></textarea>
 <br>
 <input type="submit" value="Lisää myyntipaikka">
 </form>

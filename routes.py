@@ -5,7 +5,7 @@ import users, locations
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT location_name FROM locations")
+    result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations")
     location = result.fetchall()
     return render_template("index.html", location=location) 
 
