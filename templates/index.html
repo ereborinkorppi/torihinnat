@@ -3,6 +3,8 @@
 {% block content %}
 {% if session.user_id %}
 <a href="/new">Lisää uusi myyntipaikka</a>
+{% else %}
+<p>Kirjaudu sisään lisätäksesi uuden myyntipaikan</p>
 {% endif %}
 <h3>Myyntipaikat</h3>
 <table>

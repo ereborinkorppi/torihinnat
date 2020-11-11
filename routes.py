@@ -5,7 +5,7 @@ import users, locations
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations")
+    result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations WHERE visible")
     location = result.fetchall()
     return render_template("index.html", location=location) 
 
@@ -45,4 +45,5 @@ def register():
         if users.register(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Rekisteröinti ei onnistunut")            
+            return render_template("error.html",message="Rekisteröinti ei onnistunut")    
+         
