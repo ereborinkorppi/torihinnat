@@ -1,12 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
-{% if session.user_id %}
-<a href="/new">Lisää uusi myyntipaikka</a>
-{% else %}
-<p>Kirjaudu sisään lisätäksesi uuden myyntipaikan</p>
-{% endif %}
-<h3>Myyntipaikat</h3>
+<h2>Myyntipaikat</h2>
 <table>
   <tr><th>Myyntipaikan nimi</th><th>Osoite</th><th>Postinumero</th><th>Kaupunki</th></tr>
 	{% for location_name,address,postal_code,city in location %}

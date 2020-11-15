@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Uusi myyntipaikka{% endblock %}
 {% block content %}
+{% if session.user_id %}
 <h2>Lisää uusi myyntipaikka</h2>
-<form action="/send" method="POST">
+<form action="/send_location" method="POST">
 Nimi: <br>
 <textarea name="location_name" rows="1" cols="40"></textarea>
 <br>
@@ -17,4 +18,7 @@ Kaupungi: <br>
 <br>
 <input type="submit" value="Lisää myyntipaikka">
 </form>
+{% else %}
+<p>Kirjaudu sisään lisätäksesi uuden myyntipaikan</p>
+{% endif %}
 {% endblock %}

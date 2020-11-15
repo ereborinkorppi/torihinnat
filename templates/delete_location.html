@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Poista myyntipaikka{% endblock %}
+{% block content %}
+{% if session.user_id %}
+<h2>Poista myyntipaikka</h2>
+<table>
+  <tr><th>Myyntipaikan nimi</th><th>Osoite</th><th>Postinumero</th><th>Kaupunki</th><th>id</th></tr>
+	{% for location_name,address,postal_code,city,id in location %}
+  <tr><th>{{ location_name }}</th><th>{{ address }}</th><th>{{ postal_code }}</th><th>{{ city }}</th><th>{{ id }}</th></tr>
+	{% endfor %}
+</table>
+<br>
+<form action="/del_location" method="POST">
+Anna poistettavan myyntipaikan id: 
+<textarea name="location_id" rows="1" cols="10"></textarea>
+<input type="submit" value="Poista myyntipaikka">
+{% else %}
+<p>Kirjaudu sisään poistaaksesi myyntipaikan</p>
+{% endif %}
+{% endblock %}

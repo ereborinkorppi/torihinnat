@@ -10,9 +10,15 @@
 {% if session.user_id %}
 Olet kirjautunut sisään.
 <a href="/logout">Kirjaudu ulos</a>
-<hr>
 {% else %}
 <a href="/login">Kirjautuminen</a>
+{% endif %}
+<hr>
+{% if session.user_id %}
+<a href="/new_location">Lisää uusi myyntipaikka</a>
+<a href="/delete_location">Poista myyntipaikka</a>
+{% else %}
+<p>Kirjaudu sisään lisätäksesi uuden tai poistaaksesi myyntipaikan</p>
 {% endif %}
 <hr>
 {% block content %}{% endblock %}

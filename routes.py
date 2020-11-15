@@ -9,14 +9,27 @@ def index():
     location = result.fetchall()
     return render_template("index.html", location=location) 
 
-@app.route("/new")
-def new():
-    return render_template("new.html")
+@app.route("/new_location")
+def new_location():
+    return render_template("new_location.html")
     
-@app.route("/send", methods=["POST"])
-def send():
+@app.route("/send_location", methods=["POST"])
+def send_location():
     locations.send()
     return redirect("/")
+
+@app.route("/delete_location")
+def delete_location():
+    result = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
+    location = result.fetchall()
+    return render_template("delete_location.html", location=location) 
+    
+@app.route("/del_location", methods=["POST"])
+def del_location():
+    if locations.delete():
+        return redirect("/")
+    else:
+        return render_template("error.html",message="Virheellinen myyntipaikan id")   
     
 @app.route("/login", methods=["GET","POST"])
 def login():

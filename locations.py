@@ -10,4 +10,16 @@ def send():
     sql = "INSERT INTO locations (location_name,address,postal_code,city) VALUES (:location_name,:address,:postal_code,:city)"
     db.session.execute(sql, {"location_name":location_name,"address":address,"postal_code":postal_code,"city":city})
     db.session.commit()
+
+def delete():
+    location_id = request.form["location_id"]
+    try:
+        sql = "UPDATE locations SET visible = NOT visible WHERE id=(:location_id) AND visible = TRUE"
+        db.session.execute(sql, {"location_id":location_id})
+        db.session.commit()
+        return True
+    except:
+        return False
+
+
    
