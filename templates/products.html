@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Tuotteet{% endblock %}
+{% block content %}
+<h2>Tuotteet</h2>
+<table>
+  <tr><th>Tuotteen nimi</th><th>id</th></tr>
+	{% for product_name,id in product %}
+  <tr><th>{{ product_name }}</th><th>{{ id }}</th></tr>
+	{% endfor %}
+</table>
+<hr>
+{% if session.user_id %}
+<h2>Lisää uusi tuote</h2>
+<form action="/add_product" method="POST">
+Nimi: <br>
+<textarea name="product_name" rows="1" cols="40"></textarea>
+<br>
+<input type="submit" value="Lisää tuote">
+</form>
+<hr>
+<h2>Poista tuote</h2>
+<form action="/del_product" method="POST">
+Anna poistettavan tuotteen id: 
+<textarea name="product_id" rows="1" cols="10"></textarea>
+<input type="submit" value="Poista tuote">
+</form>
+{% else %}
+<p>Kirjaudu sisään lisätäksesi uuden tai poistaaksesi tuotteen</p>
+{% endif %}
+{% endblock %}

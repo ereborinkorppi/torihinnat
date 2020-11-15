@@ -3,7 +3,7 @@
 {% block content %}
 {% if session.user_id %}
 <h2>Lisää uusi myyntipaikka</h2>
-<form action="/send_location" method="POST">
+<form action="/add_location" method="POST">
 Nimi: <br>
 <textarea name="location_name" rows="1" cols="40"></textarea>
 <br>

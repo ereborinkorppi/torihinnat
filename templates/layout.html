@@ -15,10 +15,12 @@ Olet kirjautunut sisään.
 {% endif %}
 <hr>
 {% if session.user_id %}
+<a href="/new_price">Lisää uusi hintatieto</a>
 <a href="/new_location">Lisää uusi myyntipaikka</a>
 <a href="/delete_location">Poista myyntipaikka</a>
+<a href="/products">Muokkaa tuotteita</a>
 {% else %}
-<p>Kirjaudu sisään lisätäksesi uuden tai poistaaksesi myyntipaikan</p>
+<p>Kirjaudu sisään lisätäksesi uuden tai poistaaksesi myyntipaikan tai muokataksesi tuotteita</p>
 {% endif %}
 <hr>
 {% block content %}{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Uusi hintatieto{% endblock %}
+{% block content %}
+{% if session.user_id %}
+<h2>Lisää uusi hintatieto</h2>
+<form action="/add_price" method="POST">
+<label for="location">Valitse myyntipaikka:</label>
+  <select id="location" name="location">
+  {% for location_name,id in location %}
+    <option value="{{ id }}">{{ location_name }}</option>
+  {% endfor %}
+  </select>
+<br>
+<label for="product">Valitse tuote:</label>
+  <select id="product" name="product">
+  {% for product_name,id in product %}
+    <option value="{{ id }}">{{ product_name }}</option>
+  {% endfor %}
+  </select>
+<br>
+Hinta: <br>
+<textarea name="price" rows="1" cols="10"></textarea>
+<br>
+Yksikkö: 
+<p>
+<input type="radio" name="price_unit" value="€/Litra"> €/Litra
+<input type="radio" name="price_unit" value="€/Kilo"> €/Kilo
+<br>
+<input type="submit" value="Lisää hintatieto">
+</form>
+{% else %}
+<p>Kirjaudu sisään lisätäksesi uuden hintatiedon</p>
+{% endif %}
+{% endblock %}
