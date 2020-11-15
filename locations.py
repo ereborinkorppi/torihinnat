@@ -2,7 +2,7 @@ from db import db
 from flask import request, session
 import users
 
-def send():
+def add():
     location_name = request.form["location_name"]
     address = request.form["address"]
     postal_code = request.form["postal_code"]
