@@ -4,8 +4,8 @@
 <h2>Tuoreimmat hintatiedot</h2>
 <table>
   <tr><th>Myyntipaikan nimi</th><th>Tuote</th><th>Hinta</th><th>Lisätty</th></tr>
-	{% for location_name,product_name,price,price_unit,added in price_line %}
-  <tr><th>{{ location_name }}</th><th>{{ product_name }}</th><th>{{ price }} {{ price_unit}}</th><th>{{ added }}</th></tr>
+	{% for location_name,city,product_name,price,price_unit,added in price_line %}
+  <tr><th>{{ location_name }}</th><th>{{ city }}</th><th>{{ product_name }}</th><th>{{ price }} {{ price_unit}}</th><th>{{ added }}</th></tr>
 	{% endfor %}
 </table>
 <hr>

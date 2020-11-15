@@ -7,7 +7,7 @@ import users, locations, products, prices
 def index():
     result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations WHERE visible")
     location = result.fetchall()
-    result2 = db.session.execute("SELECT locations.location_name,products.product_name,price_info.price,price_info.price_unit,price_info.added FROM price_info,locations,products WHERE price_info.product_id = products.id AND price_info.location_id = locations.id AND price_info.visible ORDER BY price_info.added DESC")
+    result2 = db.session.execute("SELECT locations.location_name,locations.city,products.product_name,price_info.price,price_info.price_unit,price_info.added FROM price_info,locations,products WHERE price_info.product_id = products.id AND price_info.location_id = locations.id AND price_info.visible ORDER BY price_info.added DESC")
     price_line = result2.fetchall()
     return render_template("index.html", location=location, price_line=price_line) 
 
