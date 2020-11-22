@@ -1,6 +1,6 @@
 from app import app
 from db import db
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, flash
 import users, locations, products, prices
 
 @app.route("/")
@@ -31,10 +31,11 @@ def del_location():
     if locations.delete():
         return redirect("/")
     else:
-        return render_template("error.html",message="Virheellinen myyntipaikan id")   
+        flash("Virheellinen myyntipaikan id")
+        return redirect("/delete_location")   
 
 @app.route("/products")
-def products():
+def manage_products():
     result = db.session.execute("SELECT product_name,id FROM products WHERE visible")
     product = result.fetchall()
     return render_template("products.html", product=product) 
@@ -49,7 +50,8 @@ def del_product():
     if products.delete():
         return redirect("/products")
     else:
-        return render_template("error.html",message="Virheellinen tuotteen id")   
+        flash("Virheellinen tuotteen id")
+        return redirect("/products") 
 
 @app.route("/new_price")
 def new_price():
@@ -74,7 +76,8 @@ def login():
         if users.login(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Väärä tunnus tai salasana") 
+            flash("Väärä tunnus tai salasana")
+            return render_template("login.html") 
             
 @app.route("/logout")
 def logout():
@@ -91,5 +94,6 @@ def register():
         if users.register(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Rekisteröinti ei onnistunut")    
+            flash("Rekisteröinti ei onnistunut")
+            return render_template("register.html")    
          

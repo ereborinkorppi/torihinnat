@@ -10,6 +10,9 @@
 	{% endfor %}
 </table>
 <br>
+{% for message in get_flashed_messages() %}
+<p style="color:red;">{{ message }}</p>
+{% endfor %}
 <form action="/del_location" method="POST">
 Anna poistettavan myyntipaikan id: 
 <textarea name="location_id" rows="1" cols="10"></textarea>

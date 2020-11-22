@@ -19,6 +19,9 @@ Nimi: <br>
 </form>
 <hr>
 <h2>Poista tuote</h2>
+{% for message in get_flashed_messages() %}
+<p style="color:red;">{{ message }}</p>
+{% endfor %}
 <form action="/del_product" method="POST">
 Anna poistettavan tuotteen id: 
 <textarea name="product_id" rows="1" cols="10"></textarea>
