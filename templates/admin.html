@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+{% if session.is_admin %}
+<h2>Admin näkymä</h2>
+<p>Admin näkymässä voit hallinnoida saatavilla olevia tuotteita lisäämällä uusia tuotteita tai poistamalla olemassa olevia. 
+Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
+{% for message in get_flashed_messages() %}
+<p style="color:red;">{{ message }}</p>
+{% endfor %}
+<hr>
+<h3>Tuotteet</h3>
+<table>
+  <tr><th>Tuotteen nimi</th><th>id</th></tr>
+	{% for product_name,id in product %}
+  <tr><th>{{ product_name }}</th><th>{{ id }}</th></tr>
+	{% endfor %}
+</table>
+<h3>Lisää uusi tuote</h3>
+<form action="/add_product" method="POST">
+Nimi:
+<input type="text" id="product_name" name="product_name" required>
+<input type="submit" value="Lisää tuote">
+</form>
+<h3>Poista tuote</h3>
+<form action="/del_product" method="POST">
+Anna poistettavan tuotteen id: 
+<input type="number" id="product_id" name="product_id" step="1" min="0" required>
+<input type="submit" value="Poista tuote">
+</form>
+<hr>
+<h3>Poista myyntipaikka</h3>
+<table>
+  <tr><th>Myyntipaikan nimi</th><th>Osoite</th><th>Postinumero</th><th>Kaupunki</th><th>id</th></tr>
+	{% for location_name,address,postal_code,city,id in location %}
+  <tr><th>{{ location_name }}</th><th>{{ address }}</th><th>{{ postal_code }}</th><th>{{ city }}</th><th>{{ id }}</th></tr>
+	{% endfor %}
+</table>
+<br>
+<form action="/del_location" method="POST">
+Anna poistettavan myyntipaikan id: 
+<input type="number" id="location_id" name="location_id" step="1" min="0" required>
+<input type="submit" value="Poista myyntipaikka">
+</form>
+{% endif %}
+{% endblock %}

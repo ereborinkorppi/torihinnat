@@ -19,39 +19,35 @@ def new_location():
 def add_location():
     locations.add()
     return redirect("/")
-
-@app.route("/delete_location")
-def delete_location():
-    result = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
-    location = result.fetchall()
-    return render_template("delete_location.html", location=location) 
     
 @app.route("/del_location", methods=["POST"])
 def del_location():
     if locations.delete():
-        return redirect("/")
+        return redirect("/admin")
     else:
         flash("Virheellinen myyntipaikan id")
-        return redirect("/delete_location")   
+        return redirect("/admin")   
 
-@app.route("/products")
-def manage_products():
+@app.route("/admin")
+def admin():
     result = db.session.execute("SELECT product_name,id FROM products WHERE visible")
     product = result.fetchall()
-    return render_template("products.html", product=product) 
+    result2 = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
+    location = result2.fetchall()
+    return render_template("admin.html", product=product, location=location) 
 
 @app.route("/add_product", methods=["POST"])
 def add_product():
     products.add()
-    return redirect("/products")
+    return redirect("/admin")
 
 @app.route("/del_product", methods=["POST"])
 def del_product():
     if products.delete():
-        return redirect("/products")
+        return redirect("/admin")
     else:
         flash("Virheellinen tuotteen id")
-        return redirect("/products") 
+        return redirect("/admin") 
 
 @app.route("/new_price")
 def new_price():
