@@ -42,5 +42,19 @@ Anna poistettavan myyntipaikan id:
 <input type="number" id="location_id" name="location_id" step="1" min="0" required>
 <input type="submit" value="Poista myyntipaikka">
 </form>
+<hr>
+<h3>Poista hintatieto</h3>
+<table>
+  <tr><th>Myyntipaikan nimi</th><th>Kaupunki</th><th>Tuote</th><th>Hinta</th><th>Lisätty</th><th>id</th></tr>
+	{% for location_name,city,product_name,price,price_unit,added,id in price_line %}
+  <tr><th>{{ location_name }}</th><th>{{ city }}</th><th>{{ product_name }}</th><th>{{ price }} {{ price_unit}}</th><th>{{ added }}</th><th>{{ id }}</th></tr>
+	{% endfor %}
+</table>
+<br>
+<form action="/del_price_line" method="POST">
+Anna poistettavan hintatiedon id: 
+<input type="number" id="price_info_id" name="price_info_id" step="1" min="0" required>
+<input type="submit" value="Poista hintatieto">
+</form>
 {% endif %}
 {% endblock %}

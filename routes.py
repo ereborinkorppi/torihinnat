@@ -26,7 +26,7 @@ def del_location():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html", product=products.get(), location=locations.get_admin()) 
+    return render_template("admin.html", product=products.get(), location=locations.get_admin(), price_line=prices.get_admin()) 
 
 @app.route("/add_product", methods=["POST"])
 def add_product():
@@ -40,6 +40,14 @@ def del_product():
     else:
         flash("Virheellinen tuotteen id")
         return redirect("/admin") 
+
+@app.route("/del_price_line", methods=["POST"])
+def del_price_line():
+    if prices.delete():
+        return redirect("/admin")
+    else:
+        flash("Virheellinen hintatiedon id")
+        return redirect("/admin")         
 
 @app.route("/new_price")
 def new_price():

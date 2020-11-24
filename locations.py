@@ -1,6 +1,5 @@
 from db import db
 from flask import request, session
-import users
 
 def add():
     location_name = request.form["location_name"]
