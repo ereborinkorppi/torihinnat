@@ -18,5 +18,9 @@ def delete():
     except:
         return False
 
+def get():
+    result = db.session.execute("SELECT product_name,id FROM products WHERE visible")
+    product = result.fetchall()
+    return product
 
    

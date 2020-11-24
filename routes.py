@@ -5,11 +5,7 @@ import users, locations, products, prices
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations WHERE visible")
-    location = result.fetchall()
-    result2 = db.session.execute("SELECT locations.location_name,locations.city,products.product_name,price_info.price,price_info.price_unit,price_info.added FROM price_info,locations,products WHERE price_info.product_id = products.id AND price_info.location_id = locations.id AND price_info.visible ORDER BY price_info.added DESC")
-    price_line = result2.fetchall()
-    return render_template("index.html", location=location, price_line=price_line) 
+    return render_template("index.html", location=locations.get_list(), price_line=prices.get()) 
 
 @app.route("/new_location")
 def new_location():
@@ -30,11 +26,7 @@ def del_location():
 
 @app.route("/admin")
 def admin():
-    result = db.session.execute("SELECT product_name,id FROM products WHERE visible")
-    product = result.fetchall()
-    result2 = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
-    location = result2.fetchall()
-    return render_template("admin.html", product=product, location=location) 
+    return render_template("admin.html", product=products.get(), location=locations.get_admin()) 
 
 @app.route("/add_product", methods=["POST"])
 def add_product():
@@ -51,11 +43,7 @@ def del_product():
 
 @app.route("/new_price")
 def new_price():
-    result = db.session.execute("SELECT location_name,id FROM locations WHERE visible")
-    location = result.fetchall()
-    result2 = db.session.execute("SELECT product_name,id FROM products WHERE visible")
-    product = result2.fetchall()
-    return render_template("new_price.html", location=location, product=product)   
+    return render_template("new_price.html", location=locations.get_price(), product=products.get())   
 
 @app.route("/add_price", methods=["POST"])
 def add_price():
