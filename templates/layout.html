@@ -1,29 +1,29 @@
 <!doctype html>
 <head>
+<link rel="stylesheet" href="/static/main.css">
 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 </head>
 <body>
 <title>Torihinnat - {% block title %}{% endblock %}</title>
-<img src="/static/tori.jpg" alt="Torikuva" width="30%" height="30%">
+<img src="/static/tori.jpg" alt="Torikuva" width="100%" height="auto">
+<div class="topnav">
+	<a href="/">Etusivu</a>
+	{% if session.user_id %}
+	<a href="/new_price">Uusi hintatieto</a>
+	<a href="/new_location">Uusi myyntipaikka</a>
+	{% if session.is_admin %}
+	<a href="/admin">Admin</a>
+	{% endif %}
+	<a href="/logout">Kirjaudu ulos</a>
+	{% else %}
+	<a href="/login">Kirjautuminen</a>
+	{% endif %}
+</div>
 <h1>Torihinnat</h1>
-<a href="/">Etusivu</a>
 {% if session.user_id %}
-Olet kirjautunut sisään.
-<a href="/logout">Kirjaudu ulos</a>
 {% else %}
-<a href="/login">Kirjautuminen</a>
-{% endif %}
-<hr>
-{% if session.user_id %}
-<a href="/new_price">Lisää uusi hintatieto</a>
-<a href="/new_location">Lisää uusi myyntipaikka</a>
-{% else %}
-<p>Kirjaudu sisään antaaksesi hintatietoja tai lisätäksesi uuden tai myyntipaikan.</p>
-{% endif %}
-{% if session.is_admin %}
-<a href="/admin">Admin näkymä</a>
-{% endif %}
-<hr>
+<p>Kirjaudu sisään antaaksesi hintatietoja tai lisätäksesi uuden myyntipaikan.</p>
+{% endif %}	
 {% block content %}{% endblock %}
 <hr>
 Created by Ereborinkorppi

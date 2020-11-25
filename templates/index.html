@@ -5,7 +5,7 @@
 <table>
   <tr><th>Myyntipaikan nimi</th><th>Kaupunki</th><th>Tuote</th><th>Hinta</th><th>Lisätty</th></tr>
 	{% for location_name,city,product_name,price,price_unit,added in price_line %}
-  <tr><th>{{ location_name }}</th><th>{{ city }}</th><th>{{ product_name }}</th><th>{{ price }} {{ price_unit}}</th><th>{{ added }}</th></tr>
+  <tr><td>{{ location_name }}</td><td>{{ city }}</td><td>{{ product_name }}</td><td>{{ price }} {{ price_unit}}</td><td>{{ added }}</td></tr>
 	{% endfor %}
 </table>
 <hr>
@@ -13,7 +13,7 @@
 <table>
   <tr><th>Myyntipaikan nimi</th><th>Osoite</th><th>Postinumero</th><th>Kaupunki</th></tr>
 	{% for location_name,address,postal_code,city in location %}
-  <tr><th>{{ location_name }}</th><th>{{ address }}</th><th>{{ postal_code }}</th><th>{{ city }}</th></tr>
+  <tr><td>{{ location_name }}</td><td>{{ address }}</td><td>{{ postal_code }}</td><td>{{ city }}</td></tr>
 	{% endfor %}
 </table>
 {% endblock %}

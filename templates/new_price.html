@@ -3,30 +3,31 @@
 {% block content %}
 {% if session.user_id %}
 <h2>Lisää uusi hintatieto</h2>
-<form action="/add_price" method="POST">
-<label for="location">Valitse myyntipaikka:</label>
-  <select id="location" name="location">
-  {% for location_name,id in location %}
-    <option value="{{ id }}">{{ location_name }}</option>
-  {% endfor %}
-  </select>
-<br>
-<label for="product">Valitse tuote:</label>
-  <select id="product" name="product">
-  {% for product_name,id in product %}
-    <option value="{{ id }}">{{ product_name }}</option>
-  {% endfor %}
-  </select>
-<br>
-Hinta: <br>
-<input type="number" id="price" name="price" step="0.10" min="0" required>
-<br>
-Yksikkö: 
-<p>
-<input type="radio" name="price_unit" value="€/litra" checked> €/litra
-<input type="radio" name="price_unit" value="€/kilo"> €/kilo
-<br>
-<input type="submit" value="Lisää hintatieto">
-</form>
+<div class="input">
+	<form action="/add_price" method="POST">
+		<label for="location">Valitse myyntipaikka:</label>
+			<select id="location" name="location">
+		{% for location_name,id in location %}
+			<option value="{{ id }}">{{ location_name }}</option>
+		{% endfor %}
+			</select>
+		<br>
+		<label for="product">Valitse tuote:</label>
+			<select id="product" name="product">
+		{% for product_name,id in product %}
+			<option value="{{ id }}">{{ product_name }}</option>
+		{% endfor %}
+			</select>
+		<br>
+		Hinta: <br>
+		<input type="number" id="price" name="price" step="0.10" min="0" required>
+		<br>
+		Yksikkö: 
+		<input type="radio" name="price_unit" value="€/litra" checked> €/litra
+		<input type="radio" name="price_unit" value="€/kilo"> €/kilo
+		<br>
+		<input type="submit" value="Lisää hintatieto">
+	</form>
+</div>
 {% endif %}
 {% endblock %}
