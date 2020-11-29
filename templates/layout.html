@@ -9,8 +9,8 @@
 <div class="topnav">
 	<a href="/">Etusivu</a>
 	{% if session.user_id %}
-	<a href="/new_price">Uusi hintatieto</a>
-	<a href="/new_location">Uusi myyntipaikka</a>
+	<a href="/add_price">Uusi hintatieto</a>
+	<a href="/add_location">Uusi myyntipaikka</a>
 	{% if session.is_admin %}
 	<a href="/admin">Admin</a>
 	{% endif %}

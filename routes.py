@@ -5,16 +5,15 @@ import users, locations, products, prices
 
 @app.route("/")
 def index():
-    return render_template("index.html", location=locations.get_list(), price_line=prices.get()) 
-
-@app.route("/new_location")
-def new_location():
-    return render_template("new_location.html")
+    return render_template("index.html", location=locations.get(), price_line=prices.get()) 
     
-@app.route("/add_location", methods=["POST"])
+@app.route("/add_location", methods=["GET","POST"])
 def add_location():
-    locations.add()
-    return redirect("/")
+    if request.method == "GET":
+        return render_template("new_location.html")
+    if request.method == "POST":
+        locations.add()
+        return redirect("/")
     
 @app.route("/del_location", methods=["POST"])
 def del_location():
@@ -26,7 +25,7 @@ def del_location():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html", product=products.get(), location=locations.get_admin(), price_line=prices.get_admin()) 
+    return render_template("admin.html", product=products.get(), location=locations.get(), price_line=prices.get()) 
 
 @app.route("/add_product", methods=["POST"])
 def add_product():
@@ -49,14 +48,13 @@ def del_price_line():
         flash("Virheellinen hintatiedon id")
         return redirect("/admin")         
 
-@app.route("/new_price")
-def new_price():
-    return render_template("new_price.html", location=locations.get_price(), product=products.get())   
-
-@app.route("/add_price", methods=["POST"])
+@app.route("/add_price", methods=["GET","POST"])
 def add_price():
-    prices.add()
-    return redirect("/")
+    if request.method == "GET":
+        return render_template("new_price.html", location=locations.get(), product=products.get())
+    if request.method == "POST":
+        prices.add()
+        return redirect("/")
     
 @app.route("/login", methods=["GET","POST"])
 def login():

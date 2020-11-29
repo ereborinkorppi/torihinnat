@@ -20,20 +20,9 @@ def delete():
     except:
         return False
 
-def get_list():
-    result = db.session.execute("SELECT location_name,address,postal_code,city FROM locations WHERE visible")
-    location = result.fetchall()
-    return location
-
-def get_admin():
+def get():
     result = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
     location = result.fetchall()
     return location
-
-def get_price():
-    result = db.session.execute("SELECT location_name,id FROM locations WHERE visible")
-    location = result.fetchall()
-    return location
-
 
    
