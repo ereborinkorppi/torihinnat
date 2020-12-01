@@ -22,6 +22,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 		Nimi:
 		<input type="text" id="product_name" name="product_name" maxlength="50" required>
 		<input type="submit" value="Lisää tuote">
+		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 	</form>
 </div>
 <h3>Poista tuote</h3>
@@ -30,6 +31,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 		Anna poistettavan tuotteen id: 
 		<input type="number" id="product_id" name="product_id" step="1" min="0" required>
 		<input type="submit" value="Poista tuote">
+		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 	</form>
 </div>
 <hr>
@@ -46,6 +48,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 		Anna poistettavan myyntipaikan id: 
 		<input type="number" id="location_id" name="location_id" step="1" min="0" required>
 		<input type="submit" value="Poista myyntipaikka">
+		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 	</form>
 </div>
 <hr>
@@ -62,6 +65,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 		Anna poistettavan hintatiedon id: 
 		<input type="number" id="price_info_id" name="price_info_id" step="1" min="0" required>
 		<input type="submit" value="Poista hintatieto">
+		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 	</form>
 </div>
 {% else %}

@@ -12,16 +12,22 @@ def add_location():
     if request.method == "GET":
         return render_template("new_location.html")
     if request.method == "POST":
-        locations.add()
-        return redirect("/")
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        else:
+            locations.add()
+            return redirect("/")
     
 @app.route("/del_location", methods=["POST"])
 def del_location():
-    if locations.delete():
-        return redirect("/admin")
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     else:
-        flash("Virheellinen myyntipaikan id")
-        return redirect("/admin")   
+        if locations.delete():
+            return redirect("/admin")
+        else:
+            flash("Virheellinen myyntipaikan id")
+            return redirect("/admin")   
 
 @app.route("/admin")
 def admin():
@@ -29,32 +35,44 @@ def admin():
 
 @app.route("/add_product", methods=["POST"])
 def add_product():
-    products.add()
-    return redirect("/admin")
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
+    else:
+        products.add()
+        return redirect("/admin")
 
 @app.route("/del_product", methods=["POST"])
 def del_product():
-    if products.delete():
-        return redirect("/admin")
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     else:
-        flash("Virheellinen tuotteen id")
-        return redirect("/admin") 
+        if products.delete():
+            return redirect("/admin")
+        else:
+            flash("Virheellinen tuotteen id")
+            return redirect("/admin") 
 
 @app.route("/del_price_line", methods=["POST"])
 def del_price_line():
-    if prices.delete():
-        return redirect("/admin")
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     else:
-        flash("Virheellinen hintatiedon id")
-        return redirect("/admin")         
+        if prices.delete():
+            return redirect("/admin")
+        else:
+            flash("Virheellinen hintatiedon id")
+            return redirect("/admin")         
 
 @app.route("/add_price", methods=["GET","POST"])
 def add_price():
     if request.method == "GET":
         return render_template("new_price.html", location=locations.get(), product=products.get())
     if request.method == "POST":
-        prices.add()
-        return redirect("/")
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        else:
+            prices.add()
+            return redirect("/")
 
 @app.route("/prices", methods=["GET","POST"])
 def price_info():
