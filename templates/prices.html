@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Hintatiedot{% endblock %}
+{% block content %}
+<h2>Kaikki hintatiedot</h2>
+<table>
+  <tr><th>Myyntipaikan nimi</th><th>Kaupunki</th><th>Tuote</th><th>Hinta</th><th>Lisätty</th></tr>
+	{% for location_name,city,product_name,price,price_unit,added,id in price_line %}
+  <tr><td>{{ location_name }}</td><td>{{ city }}</td><td>{{ product_name }}</td><td>{{ price }} {{ price_unit}}</td><td>{{ added }}</td></tr>
+	{% endfor %}
+</table>
+{% endblock %}

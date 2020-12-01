@@ -1,17 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Kirjautuminen{% endblock %}
 {% block content %}
+{% if session.user_id %}
+Olet jo kirjautunut sisään
+{% else %}
 <h2>Kirjautuminen</h2>
 {% for message in get_flashed_messages() %}
 <p style="color:red;">{{ message }}</p>
 {% endfor %}
 <div class="input">
 	<form action="/login" method="post">
-		Tunnus: <input type="text" name="username" required>
+		Tunnus: <input type="text" name="username" required >
 		Salasana: <input type="password" name="password" required>
 		<input type="submit" value="Kirjaudu">
 	</form>
 	<br>
 	Jos sinulla ei ole tunnusta, voit luoda uuden tunnuksen <a href="/register">tästä</a>
 </div>
+{% endif %}	
 {% endblock %}

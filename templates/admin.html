@@ -20,7 +20,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 <div class="input">
 	<form action="/add_product" method="POST">
 		Nimi:
-		<input type="text" id="product_name" name="product_name" required>
+		<input type="text" id="product_name" name="product_name" maxlength="50" required>
 		<input type="submit" value="Lisää tuote">
 	</form>
 </div>
@@ -64,5 +64,7 @@ Lisäksi voit poistaa olemassa olevia myyntipaikkoja, sekä hintatietoja.</p>
 		<input type="submit" value="Poista hintatieto">
 	</form>
 </div>
+{% else %}
+Ei käyttöoikeutta!
 {% endif %}
 {% endblock %}

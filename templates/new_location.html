@@ -6,13 +6,13 @@
 <div class="input">
 	<form action="/add_location" method="POST">
 		Nimi: <br>
-		<input type="text" id="location_name" name="location_name" required></p>
+		<input type="text" id="location_name" name="location_name" maxlength="50" required></p>
 		Osoite: <br>
-		<input type="text" id="address" name="address" required></p>
+		<input type="text" id="address" name="address" maxlength="50" required></p>
 		Postinumero: <br>
-		<input type="text" id="postal_code" name="postal_code" placeholder="00100" required></p>
+		<input type="text" id="postal_code" name="postal_code" maxlength="5" placeholder="00100" required></p>
 		Kaupunki: <br>
-		<input type="text" id="city" name="city" required></p>
+		<input type="text" id="city" name="city" maxlength="30" required></p>
 		<input type="submit" value="Lisää myyntipaikka">
 	</form>
 </div>

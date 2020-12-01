@@ -1,6 +1,6 @@
 from app import app
 from db import db
-from flask import redirect, render_template, request, flash
+from flask import redirect, render_template, request, flash, session
 import users, locations, products, prices
 
 @app.route("/")
@@ -55,6 +55,13 @@ def add_price():
     if request.method == "POST":
         prices.add()
         return redirect("/")
+
+@app.route("/prices", methods=["GET","POST"])
+def price_info():
+    if request.method == "GET":
+        return render_template("prices.html", price_line=prices.get_all())
+    if request.method == "POST":
+        return render_template("prices.html", price_line=prices.get_all())        
     
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -71,8 +78,11 @@ def login():
             
 @app.route("/logout")
 def logout():
-    users.logout()
-    return redirect("/")
+    if session.get("user_id"):
+        users.logout()
+        return redirect("/")
+    else:
+        return render_template("index.html", location=locations.get(), price_line=prices.get())
 
 @app.route("/register", methods=["get","post"])
 def register():
