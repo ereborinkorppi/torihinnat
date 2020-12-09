@@ -7,7 +7,7 @@
 
 			<select id="city" name="city">
 			<option>Valitse kaupunki</option>
-		{% for city,id in cities %}
+		{% for city in cities %}
 			<option value="{{ city }}">{{ city }}</option>
 		{% endfor %}
 			</select>
