@@ -26,6 +26,6 @@ def get():
     return location
     
 def get_cities():
-    result = db.session.execute("SELECT DISTINCT city FROM locations WHERE visible ORDER BY city")
+    result = db.session.execute("SELECT DISTINCT locations.city,price_info.visible FROM locations,price_info WHERE price_info.location_id=locations.id AND price_info.visible ORDER BY locations.city")
     cities = result.fetchall()
     return cities

@@ -4,10 +4,9 @@
 <h2>Kaikki hintatiedot</h2>
 <div class="input">
 	<form action="/prices" method="POST">
-
 			<select id="city" name="city">
 			<option>Valitse kaupunki</option>
-		{% for city in cities %}
+		{% for city,visible in cities %}
 			<option value="{{ city }}">{{ city }}</option>
 		{% endfor %}
 			</select>
