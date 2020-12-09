@@ -2,6 +2,19 @@
 {% block title %}Hintatiedot{% endblock %}
 {% block content %}
 <h2>Kaikki hintatiedot</h2>
+<div class="input">
+	<form action="/prices" method="POST">
+
+			<select id="city" name="city">
+			<option>Valitse kaupunki</option>
+		{% for city,id in cities %}
+			<option value="{{ city }}">{{ city }}</option>
+		{% endfor %}
+			</select>
+		<br>
+		<input type="submit" value="Hae">
+	</form>
+</div>
 <table>
   <tr><th>Myyntipaikan nimi</th><th>Kaupunki</th><th>Tuote</th><th>Hinta</th><th>Lisätty</th></tr>
 	{% for location_name,city,product_name,price,price_unit,added,id in price_line %}

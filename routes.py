@@ -77,9 +77,9 @@ def add_price():
 @app.route("/prices", methods=["GET","POST"])
 def price_info():
     if request.method == "GET":
-        return render_template("prices.html", price_line=prices.get_all())
+        return render_template("prices.html", cities=locations.get_cities(), price_line=prices.get_all())
     if request.method == "POST":
-        return render_template("prices.html", price_line=prices.get_all())        
+        return render_template("prices.html", cities=locations.get_cities(), price_line=prices.get_city_prices())       
     
 @app.route("/login", methods=["GET","POST"])
 def login():
