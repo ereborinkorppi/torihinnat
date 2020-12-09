@@ -21,7 +21,7 @@ def delete():
         return False
 
 def get():
-    result = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible")
+    result = db.session.execute("SELECT location_name,address,postal_code,city,id FROM locations WHERE visible ORDER BY city,location_name")
     location = result.fetchall()
     return location
     

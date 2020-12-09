@@ -8,7 +8,7 @@
 		<label for="location">Valitse myyntipaikka:</label>
 			<select id="location" name="location">
 		{% for location_name,address,postal_code,city,id in location %}
-			<option value="{{ id }}">{{ location_name }}</option>
+			<option value="{{ id }}">{{ location_name }}, {{ city }}</option>
 		{% endfor %}
 			</select>
 		<br>
