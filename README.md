@@ -25,4 +25,4 @@ Puutteet (eihän tämä kuitenkaan täydellinen ole):
 * Kartta olisi kiva
 * Taulukoissa näkyvien päivämäärien ja hintatietojen stilisointi suomalaiseen formaattiin
 * Admin näkymän käytettävyys heikkenee huomattavasti jos sovellukseen kantaan tulee runsaasti rivejä
-* Harkkatyöksi tässä ajassa kuitenkin ihan mukiinmenevä suorityös, eikö?
+* Harkkatyöksi tässä ajassa kuitenkin ihan mukiinmenevä suoritus, eikö?
