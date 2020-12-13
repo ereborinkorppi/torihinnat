@@ -1,32 +1,32 @@
 <!doctype html>
 <head>
-<link rel="stylesheet" href="/static/main.css">
-<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<link rel="stylesheet" href="/static/main.css">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 </head>
 <body>
-<title>Torihinnat - {% block title %}{% endblock %}</title>
-<img src="/static/tori.jpg" alt="Torikuva" width="100%" height="auto">
-<div class="topnav">
-	<a href="/">Etusivu</a>
-	<a href="/prices">Kaikki hinnat</a>
+	<title>Torihinnat - {% block title %}{% endblock %}</title>
+	<img src="/static/tori.jpg" alt="Torikuva" width="100%" height="auto">
+	<div class="topnav">
+		<a href="/">Etusivu</a>
+		<a href="/prices">Kaikki hinnat</a>
+		{% if session.user_id %}
+			<a href="/add_price">Uusi hintatieto</a>
+			<a href="/add_location">Uusi myyntipaikka</a>
+			{% if session.is_admin %}
+				<a href="/admin">Admin</a>
+			{% endif %}
+			<a href="/logout">Kirjaudu ulos</a>
+		{% else %}
+			<a href="/login">Kirjautuminen</a>
+		{% endif %}
+	</div>
+	<h1>Torihinnat</h1>
 	{% if session.user_id %}
-	<a href="/add_price">Uusi hintatieto</a>
-	<a href="/add_location">Uusi myyntipaikka</a>
-	{% if session.is_admin %}
-	<a href="/admin">Admin</a>
-	{% endif %}
-	<a href="/logout">Kirjaudu ulos</a>
 	{% else %}
-	<a href="/login">Kirjautuminen</a>
-	{% endif %}
-</div>
-<h1>Torihinnat</h1>
-{% if session.user_id %}
-{% else %}
-<p>Kirjaudu sisään antaaksesi hintatietoja tai lisätäksesi uuden myyntipaikan.</p>
-{% endif %}	
-{% block content %}{% endblock %}
-<hr>
-<p style="text-align:right">Created by Ereborinkorppi &copy; 2020</p>
+		<p>Kirjaudu sisään antaaksesi hintatietoja tai lisätäksesi uuden myyntipaikan.</p>
+	{% endif %}	
+	{% block content %}{% endblock %}
+	<hr>
+	<p style="text-align:right">Created by Ereborinkorppi &copy; 2020</p>
 </body>
 </html>

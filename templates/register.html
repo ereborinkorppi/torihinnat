@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 {% block title %}Kirjautuminen{% endblock %}
 {% block content %}
-{% if session.user_id %}
-Olet jo kirjautunut sisään
-{% else %}
-<h2>Rekisteröinti</h2>
-{% for message in get_flashed_messages() %}
-<p style="color:red;">{{ message }}</p>
-{% endfor %}
-<div class="input">
-	<form action="/register" method="post">
-		Tunnus: <input type="text" name="username" maxlength="30" required>
-		Salasana: <input type="password" name="password" minlength="8" maxlength="30" required>
-		<input type="submit" value="Luo tunnus">
-	</form>
-</div>
-{% endif %}	
+	{% if session.user_id %}
+		Olet jo kirjautunut sisään
+	{% else %}
+		<h2>Rekisteröinti</h2>
+		{% for message in get_flashed_messages() %}
+			<p style="color:red;">{{ message }}</p>
+		{% endfor %}
+		<div class="input">
+			<form action="/register" method="post">
+				Tunnus: <input type="text" name="username" maxlength="30" required>
+				Salasana: <input type="password" name="password" minlength="8" maxlength="30" required>
+				<input type="submit" value="Luo tunnus">
+			</form>
+		</div>
+	{% endif %}	
 {% endblock %}

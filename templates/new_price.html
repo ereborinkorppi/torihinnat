@@ -1,34 +1,33 @@
 {% extends "layout.html" %}
 {% block title %}Uusi hintatieto{% endblock %}
 {% block content %}
-{% if session.user_id %}
-<h2>Lisää uusi hintatieto</h2>
-<div class="input">
-	<form action="/add_price" method="POST">
-		<label for="location">Valitse myyntipaikka:</label>
-			<select id="location" name="location">
-		{% for location_name,address,postal_code,city,id in location %}
-			<option value="{{ id }}">{{ location_name }}, {{ city }}</option>
-		{% endfor %}
-			</select>
-		<br>
-		<label for="product">Valitse tuote:</label>
-			<select id="product" name="product">
-		{% for product_name,id in product %}
-			<option value="{{ id }}">{{ product_name }}</option>
-		{% endfor %}
-			</select>
-		<br>
-		Hinta: <br>
-		<input type="number" id="price" name="price" step="0.10" min="0" max="100" required>
-		<br>
-		Yksikkö: 
-		<input type="radio" name="price_unit" value="€/litra" checked> €/litra
-		<input type="radio" name="price_unit" value="€/kilo"> €/kilo
-		<br>
-		<input type="submit" value="Lisää hintatieto">
-		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-	</form>
-</div>
-{% endif %}
+	{% if session.user_id %}
+		<h2>Lisää uusi hintatieto</h2>
+		<div class="input">
+			<form action="/add_price" method="POST">
+				<label for="location">Valitse myyntipaikka:</label>
+				<select id="location" name="location">
+					{% for location_name,address,postal_code,city,id in location %}
+						<option value="{{ id }}">{{ location_name }}, {{ city }}</option>
+					{% endfor %}
+				</select>
+				<br>
+				<label for="product">Valitse tuote:</label>
+				<select id="product" name="product">
+					{% for product_name,id in product %}
+						<option value="{{ id }}">{{ product_name }}</option>
+					{% endfor %}
+				</select>
+				<br>
+				Hinta: <br>
+				<input type="number" id="price" name="price" step="0.10" min="0" max="100" required>
+				Yksikkö: <br> 
+				<input type="radio" name="price_unit" value="€/litra" checked> €/litra
+				<input type="radio" name="price_unit" value="€/kilo"> €/kilo
+				<br>
+				<input type="submit" value="Lisää hintatieto">
+				<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+			</form>
+		</div>
+	{% endif %}
 {% endblock %}

@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Uusi myyntipaikka{% endblock %}
 {% block content %}
-{% if session.user_id %}
-<h2>Lisää uusi myyntipaikka</h2>
-<div class="input">
-	<form action="/add_location" method="POST">
-		Nimi: <br>
-		<input type="text" id="location_name" name="location_name" maxlength="50" required></p>
-		Osoite: <br>
-		<input type="text" id="address" name="address" maxlength="50" required></p>
-		Postinumero: <br>
-		<input type="text" id="postal_code" name="postal_code" maxlength="5" placeholder="00100" required></p>
-		Kaupunki: <br>
-		<input type="text" id="city" name="city" maxlength="30" required></p>
-		<input type="submit" value="Lisää myyntipaikka">
-		<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-	</form>
-</div>
-{% endif %}
+	{% if session.user_id %}
+		<h2>Lisää uusi myyntipaikka</h2>
+		<div class="input">
+			<form action="/add_location" method="POST">
+				Nimi: <br>
+				<input type="text" id="location_name" name="location_name" maxlength="50" required></p>
+				Osoite: <br>
+				<input type="text" id="address" name="address" maxlength="50" required></p>
+				Postinumero: <br>
+				<input type="text" id="postal_code" name="postal_code" maxlength="5" placeholder="00100" required></p>
+				Kaupunki: <br>
+				<input type="text" id="city" name="city" maxlength="30" required></p>
+				<input type="submit" value="Lisää myyntipaikka">
+				<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+			</form>
+		</div>
+	{% endif %}
 {% endblock %}
